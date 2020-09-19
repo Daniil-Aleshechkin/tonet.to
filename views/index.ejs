@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Sexy Site</title>
+    <script src="https://kit.fontawesome.com/1231548321.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="follow"> 
+        <i class="fab fa-instagram"></i>
+        <a target="_blank" class="follow-link link-color" href="https://www.instagram.com/friendly_neighborhood_ruskie/">@friendly_neighborhood_ruskie</a>
+        <i class="fas fa-times"></i>
+    </div>
+    <div>
+        <section class="banner">
+            <h1 class="banner-text">Dan's Super Sexy Site</h1>
+            <div class="list-container">
+                <h3 class="list-item item-1">> Web Designer</h3>
+                <h3 class="list-item item-2">> Math Enthusiast</h3>
+                <h3 class="list-item item-3">> Developer</h3>
+            </div>
+        </section>
+    </div>
+    <div class="navbar">
+        <div class="nav-button-container nav-button">
+            Home
+        </div>
+        <div class="nav-button-container nav-button">
+            about me
+        </div>
+        <div class="nav-button-container nav-button">
+            contact
+        </div>
+        <div class="nav-button-container nav-button">
+            blog
+        </div>
+        <div class="nav-button-container nav-button">
+            projects
+        </div>
+        <div class="nav-button-container nav-button">
+            new post
+        </div>
+    </div>
+    <div class="back">
+        <div class="spacing"></div>
+        
+        <% articles.forEach((article, index) => { %>
+            <div id="<%= article.id %> ">
+                <div class ="<%= (index%2==0) ? ("right") : ("left") %> title"><%=article.title%></div>
+                <div class="<%= (index%2==0) ? ("right") : ("left") %> time-stamp">
+                    <%=article.date.toLocaleDateString()%>
+                </div>
+                <div class="blog-content">
+                    <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                        <button type="submit"class="option-button">Delete</button>
+                    </form>
+                    <a href="/articles/edit/<%= article.id %>" class="option-button">Edit</a>
+
+                    <% article.markdown.forEach((elements) =>{ %>
+                        <div>
+                            <% elements.forEach((element) =>{ %> 
+                                <div class="<%= element.classes %>"> <%=element.content%></div>
+                            <% }); %>
+                        </div> 
+                    <%})%>
+                    <a href="articles/<%= article.id %> " class="read-button">Read more</a>
+                    <img src="<%= article.imgURL %> "class="footer-image">
+                    <span class="marker" id = "<%= article.id %> "></span>
+                </div>
+            </div>
+        <%})%>
+    </div>
+    <script src="/assets/scripts/test.js"></script>
+</body>
+</html>

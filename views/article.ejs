@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    
+    <div class="back">
+        <a href="/" class="option-button">Home</a>
+        <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+            <button type="submit"class="option-button">Delete</button>
+        </form>
+        <a href="/articles/edit/<%= article.id %>" class="option-button">Edit</a>
+        <div class="title"><%= article.title %> </div>
+        <div class="blog-content">
+            <% article.markdown.forEach(elements => { %>
+                <div>
+                    <% elements.forEach(element => { %> 
+                        <div class="<%= element.classes %> " ><%= element.content %> </div>
+                    <% }); %>                     
+                </div>
+                
+            <% }); %>
+            <img src="<%= article.imgURL %>" alt="blogimage"class ="footer-image">
+        </div>
+
+    <script src="/test.js"></script>
+</body>
+</html>

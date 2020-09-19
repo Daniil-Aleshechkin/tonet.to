@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="back">
+        <form action="/articles/<%= article.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div>Edit</div>
+            <a href="/" class="option-button">Home</a>
+            <div>
+                <input required value = "<%= article.title %>" class="title input-title" name="title" id="title" type="text">
+            </div>
+            <div>
+                <textarea required id="markdown" class="input-blog blog-content content" name="markdown" cols="30" rows="10"><%= markdownConvert.toStringMarkdown(article.markdown) %></textarea>
+            </div>
+            <div class="btn-container">
+                <input type="file" class="file-submit-btn" name="blogImage" id="blogImage">
+                <label for="blogImage" class="file-submit-label blog-border">Input File</label>
+            </div>
+            <div class="btn-container">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script src="/test.js"></script>
+</body>
+</html>
